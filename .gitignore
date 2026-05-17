@@ -1,24 +1,24 @@
-# Environments
+# Entornos Virtuales
 env/
-face_auth_env/
 venv/
 .env
 
-# Python artifacts
+# Artefactos de Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Local Data
-dataset/*
-!dataset/.gitkeep
-users_data.json 
+# Datos Locales
+data/dataset/*
+!data/dataset/.gitkeep
+data/users_data.json 
 
-# ML Models (Large files)
-*.h5
-*.pkl
+# Modelos ML (Archivos grandes)
+models/*.pkl
+models/*.h5
+models/*.xml
 
-# OS generated files
+# Archivos del SO
 .DS_Store
 Thumbs.db

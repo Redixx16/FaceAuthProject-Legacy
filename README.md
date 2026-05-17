@@ -1,39 +1,57 @@
-# FaceAuthProject
+# Sistema de Autenticación Facial - Mahú Perú
 
-Face Authentication System with Liveness Detection. 
+Proyecto de sistema de autenticación facial con detección de vida (liveness detection) diseñado para implementarse en el control de acceso de personal.
 
-This project was developed for the Intelligent Systems and Machine Learning course. It uses MediaPipe, OpenCV, DeepFace, and an SVM model to authenticate users securely while detecting if the user is real (blink detection) to prevent spoofing.
+## Arquitectura del Proyecto
 
-## Features
-- **Face Registration:** Automatically extract embeddings from the camera.
-- **Liveness Detection:** Analyzes eye blinks in real-time to avoid picture/video spoofing.
-- **Face Authentication:** Validates identity against an SVM trained on DeepFace embeddings.
-- **Interactive GUI:** Built with Tkinter, featuring an elegant, modern visual interface.
+El proyecto está organizado bajo los principios de Clean Architecture para asegurar escalabilidad y separación de responsabilidades:
 
-## Installation
+```text
+FaceAuthProject/
+├── src/                        # Código fuente principal
+│   ├── ui/                     # Componentes de interfaz gráfica (Tkinter)
+│   └── core/                   # Lógica de negocio, procesamiento facial y utilidades
+├── scripts/                    # Scripts independientes (ej. entrenamiento manual)
+├── models/                     # Modelos de Machine Learning entrenados (.pkl, .xml)
+├── data/                       # Almacenamiento local de la aplicación
+│   ├── dataset/                # Imágenes de rostros extraídas
+│   └── users_data.json         # Registro de logs de sesiones
+├── main.py                     # Entry point de la aplicación
+└── requirements.txt            # Dependencias del proyecto
+```
 
-1. Clone the repository:
+## Características
+- **Clean Architecture:** Código modular separado en Lógica de Interfaz (`src/ui`) y Lógica de Negocio (`src/core`).
+- **Registro de Rostros:** Extracción de embeddings (vectores de características) usando MediaPipe y TensorFlow Hub.
+- **Liveness Detection:** Cálculo del EAR (Eye Aspect Ratio) en tiempo real para evitar falsificaciones (anti-spoofing) mediante fotos o videos.
+- **Clasificación SVM:** Autenticación rápida de identidad usando un modelo de Support Vector Machine entrenado sobre los embeddings extraídos.
+
+## Requisitos y Configuración
+
+1. Clonar el repositorio y acceder a la carpeta:
    ```bash
    git clone https://github.com/Redixx16/FaceAuthProject.git
    cd FaceAuthProject
    ```
 
-2. Create a virtual environment and activate it:
+2. Crear y activar el entorno virtual:
    ```bash
    python -m venv env
-   # On Windows
-   .\env\Scripts\activate
-   # On Mac/Linux
-   source env/bin/activate
+   .\env\Scripts\activate      # Windows
+   source env/bin/activate     # Mac/Linux
    ```
 
-3. Install the dependencies:
+3. Instalar las dependencias:
    ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
-Run the main application:
+## Ejecución
+Para iniciar la aplicación visual, ejecuta:
 ```bash
 python main.py
+```
+Para forzar el entrenamiento manual del modelo con el dataset local:
+```bash
+python scripts/train_model.py
 ```

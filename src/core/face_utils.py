@@ -9,13 +9,11 @@ from sklearn.preprocessing import LabelEncoder
 import joblib
 
 class FaceUtils:
-    def __init__(self, svm_model_path='face_recognition_svm.pkl', encoder_path='label_encoder.pkl', dataset_path='dataset'):
-        # Inicializar MediaPipe Face Detection
+    def __init__(self, svm_model_path='models/face_recognition_svm.pkl', encoder_path='models/label_encoder.pkl', dataset_path='data/dataset'):
         self.mp_face_detection = mp.solutions.face_detection
         self.mp_drawing = mp.solutions.drawing_utils
         self.face_detection = self.mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5)
         
-        # Cargar el modelo de embeddings faciales desde TensorFlow Hub
         try:
             print("Cargando modelo de extracción de características desde TensorFlow Hub...")
             self.embedding_model = hub.KerasLayer(
