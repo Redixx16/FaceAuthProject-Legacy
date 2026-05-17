@@ -1,0 +1,24 @@
+# Environments
+env/
+face_auth_env/
+venv/
+.env
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Data
+dataset/*
+!dataset/.gitkeep
+users_data.json 
+
+# ML Models (Large files)
+*.h5
+*.pkl
+
+# OS generated files
+.DS_Store
+Thumbs.db
